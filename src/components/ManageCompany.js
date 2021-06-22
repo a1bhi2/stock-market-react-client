@@ -7,7 +7,8 @@ class ManageCompany extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            companyList:[]
+            companyList:[],
+            status:true
         }
         this.handleClick = this.handleClick.bind(this)
     }
@@ -21,7 +22,8 @@ class ManageCompany extends Component{
                 if(response.status === 200){
                     // console.log(response.data)
                     let list = response.data
-                    this.setState({ companyList:list})
+                    this.setState({ companyList:list,
+                    status:true})
                     console.log(list)
                 }
             })
@@ -32,6 +34,37 @@ class ManageCompany extends Component{
     handleLogout=()=>{
         this.props.handleLogout()
         this.props.history.push("/")
+    }
+    handleDelete=(e)=>{
+        console.log(e)
+        const token = this.props.data.jwt;
+        const config ={
+            headers:{Authorization: `Bearer ${token}`}
+        }
+        axios.post("https://secret-tundra-65063.herokuapp.com/company/delete",e,config)
+        .then(response=>{
+            axios.get('https://secret-tundra-65063.herokuapp.com/company/getall',config)
+            .then(response =>{
+                if(response.status === 200){
+                    // console.log(response.data)
+                    let list = response.data
+                    this.setState({ companyList:list,
+                    status:true})
+                    console.log(list)
+                }
+            })
+        }).catch(err=>{
+            axios.get('https://secret-tundra-65063.herokuapp.com/company/getall',config)
+            .then(response =>{
+                if(response.status === 200){
+                    // console.log(response.data)
+                    let list = response.data
+                    this.setState({ companyList:list,
+                    status:true})
+                    console.log(list)
+                }
+            })
+        })
     }
 
     render() {
@@ -49,6 +82,7 @@ class ManageCompany extends Component{
                     <th scope="col">Stock Exchanges</th>
                     <th scope="col">Sector</th>
                     <th scope="col">Details</th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody key="body">
@@ -60,6 +94,8 @@ class ManageCompany extends Component{
                         {company.sector!=null &&
                         <td key={company.sector.sectorName}>{company.sector.sectorName}</td>}
                         <td key={company.briefWriteup}>{company.briefWriteup}</td>
+                        
+                        <td><button className="btn btn-danger" value={company} onClick={()=>this.handleDelete(company)}>Delete</button></td>
                     </tr>
                 ))}
                 </tbody>
