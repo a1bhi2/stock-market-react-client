@@ -82,7 +82,7 @@ class ManageCompany extends Component{
                     <th scope="col">Stock Exchanges</th>
                     <th scope="col">Sector</th>
                     <th scope="col">Details</th>
-                    <th scope="col">Action</th>
+                    {this.props.data.role === "admin" && <th scope="col">Action</th>}
                 </tr>
                 </thead>
                 <tbody key="body">
@@ -94,8 +94,8 @@ class ManageCompany extends Component{
                         {company.sector!=null &&
                         <td key={company.sector.sectorName}>{company.sector.sectorName}</td>}
                         <td key={company.briefWriteup}>{company.briefWriteup}</td>
-                        
-                        <td><button className="btn btn-danger" value={company} onClick={()=>this.handleDelete(company)}>Delete</button></td>
+                        {this.props.data.role === "admin" &&
+                        <td><button className="btn btn-danger" value={company} onClick={()=>this.handleDelete(company)}>Delete</button></td>}
                     </tr>
                 ))}
                 </tbody>
