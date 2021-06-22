@@ -75,7 +75,7 @@ export default function AdminNavBar(props) {
                         </Link>
                     </Typography>
                     <Typography variant="h6" className={classes.title}>
-                    <Link to='/manageexchange' className="text-white" style={{ textDecoration: 'none'}}>
+                    <Link to='/ipo' className="text-white" style={{ textDecoration: 'none'}}>
                             Update IPO details
                         </Link>
                     </Typography>
