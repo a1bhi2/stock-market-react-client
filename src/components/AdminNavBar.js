@@ -75,42 +75,12 @@ export default function AdminNavBar(props) {
                         </Link>
                     </Typography>
                     <Typography variant="h6" className={classes.title}>
-                    <Link to='/ipo' className="text-white" style={{ textDecoration: 'none'}}>
+                    <Link to='/manageexchange' className="text-white" style={{ textDecoration: 'none'}}>
                             Update IPO details
                         </Link>
                     </Typography>
                    
-                    {auth && (
-                        <div>
-                            <IconButton
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleMenu}
-                                color="inherit"
-                            >
-                                <AccountCircle />
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={open}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={handleClose}>My account</MenuItem>
-                            </Menu>
-                        </div>
-                    )}
+                    
                 </Toolbar>
             </AppBar>
         </div>

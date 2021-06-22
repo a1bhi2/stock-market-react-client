@@ -34,7 +34,7 @@ class Register extends Component{
 
     render() {
         return <div>
-            <NavBar/>
+            
             <form class="w-25 p-3 mx-auto ">
                 <h3>New User? Sign Up</h3>
                 <div className="form-group pt-2">
